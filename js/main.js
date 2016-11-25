@@ -123,34 +123,62 @@
 /* Find */
 	$("#form_find").on("submit", function()
 	{
-		$.ajax({
-			type: "POST",
-			url: "../ajax/other/find.php",
-			data: {"id": $("#id_form_find").val(), "date": $("#date_form_find").val()},
-			dataType: "json",
-			success: function(data){
-				$("#id_result_find").html(data.id);
-				$("#idusr_result_find").html(data.idUsr);
-				$("#name_result_find").html(data.name);
-				$("#time_result_find").html(data.time);
-				$("#device_result_find").html(data.device);
-				$("#hash_result_find").html(data.hash);
-			}
-		});
+		var id_form = $("#id_form_find");
+		var date_form = $("#date_form_find");
+		
+		if(id_form.val() == "")
+		{
+			id_form.focus();
+		} else if(date_form.val() == "")
+		{
+			date_form.focus();
+		} else
+		{
+			$.ajax({
+				type: "POST",
+				url: "../ajax/other/find.php",
+				data: {"id": id_form.val(), "date": date_form.val()},
+				dataType: "json",
+				success: function(data){
+					$("#id_result_find").html(data.id);
+					$("#idusr_result_find").html(data.idUsr);
+					$("#name_result_find").html(data.name);
+					$("#time_result_find").html(data.time);
+					$("#device_result_find").html(data.device);
+					$("#hash_result_find").html(data.hash);
+				}
+			});
+		}
 	});
 /* /Find */
 /* Delete */
 	$("#form_delete").on("submit", function()
 	{
-		$.ajax({
-			type: "POST",
-			url: "../ajax/other/delete.php",
-			data: {"id": $("#id_form_delete").val(), "date": $("#date_form_delete").val()},
-			dataType: "json",
-			success: function(data){
-				alert(data.status);
-			}
-		});
+		var id_form = $("#id_form_delete");
+		var date_form = $("#date_form_delete");
+		var pass_form = $("#pass_form_delete");
+		
+		if(id_form.val() == "")
+		{
+			id_form.focus();
+		} else if(date_form.val() == "")
+		{
+			date_form.focus();
+		} else if(pass_form.val() == "")
+		{
+			pass_form.focus();
+		} else
+		{
+			$.ajax({
+				type: "POST",
+				url: "../ajax/other/delete.php",
+				data: {"id": id_form.val(), "date": date_form.val(), "pass": pass_form.val()},
+				dataType: "json",
+				success: function(data){
+					alert(data.status);
+				}
+			});
+		}
 	});
 /* /Delete */
 /* Double */
