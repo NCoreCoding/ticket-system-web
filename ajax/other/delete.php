@@ -9,7 +9,7 @@
 			echo "Connection failed: " . $e->getMessage();
 		}
 	
-		$query = $conn->prepare("DELETE FROM users WHERE id = :id AND DATE(time) >= :date");
+		$query = $conn->prepare("DELETE FROM users WHERE idUsr = :id AND DATE(time) >= :date");
 		$query->bindParam(":id", $_POST["id"], PDO::PARAM_INT);
 		$query->bindParam(":date", $_POST["date"], PDO::PARAM_STR, 18);
 		$query->execute();
@@ -18,7 +18,7 @@
 		
 		if($query->rowCount() > 0)
 		{
-			$status = "Запись с id ".$result[0]["id"]." успешно удалена";
+			$status = "Запись с id ".$result." успешно удалена";
 		}
 		else
 		{
