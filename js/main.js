@@ -13,6 +13,7 @@
 		GetLogAccounting();
 		GetStatTicket();
 		GetStatDouble();
+		NotifyNewTicket();
 	}
 	function Update()
 	{
@@ -24,6 +25,7 @@
 		setInterval(GetLogAccounting, 3000);
 		setInterval(GetStatTicket, 3000);
 		setInterval(GetStatDouble, 3000);
+		setInterval(NotifyNewTicket, 5000);
 	}
 /* /Auto Run */
 /* Stations */
@@ -175,7 +177,7 @@
 				data: {"id": id_form.val(), "date": date_form.val(), "pass": pass_form.val()},
 				dataType: "json",
 				success: function(data){
-					alert(data.status);
+					$.notify(data.status, "info");
 				}
 			});
 		}
@@ -198,3 +200,17 @@
 		});
 	}
 /* /Double */
+/* Notify */
+	function NotifyNewTicket()
+	{
+		$.ajax({
+			url: "../ajax/other/notify.php",
+			dataType: "json",
+			success: function(data){
+				$.each(data, function(i, item) {
+					$.notify("Выдан " + item.name + " в " + item.time + " на " + item.device, "success");
+				});
+			}
+		});
+	}
+/* /Notify */

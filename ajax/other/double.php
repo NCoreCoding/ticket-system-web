@@ -25,12 +25,12 @@
 	else
 	{
 		echo json_encode(array(
-			"count"	=>	"OK",
-			"id"	=>	"Fail",
-			"idUsr"	=>	"Fail",
-			"name"	=>	"Fail",
-			"time"	=>	"Fail",
-			"device" =>	"Fail"
+			"count"	=>	"0",
+			"id"	=>	"Пусто",
+			"idUsr"	=>	"Пусто",
+			"name"	=>	"Пусто",
+			"time"	=>	"Пусто",
+			"device" =>	"Пусто"
 		));
 	}
 ?>
